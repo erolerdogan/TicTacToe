@@ -1,0 +1,94 @@
+def winner_check():        # check the winner looking at the columns and the rows, if all columns / rows /crosses are same, it will decide who wins
+        if (numt[0] == "X" and numt[3] == "X" and numt[6] == "X") or (
+            numt[1] == "X" and numt[4] == "X" and numt[7] == "X") or (
+            numt[2] == "X" and numt[5] == "X" and numt[8] == "X") or (
+            numt[0] == "X" and numt[4] == "X" and numt[8] == "X") or (
+            numt[2] == "X" and numt[4] == "X" and numt[6] == "X") or (
+            numt[0] == "X" and numt[1] == "X" and numt[2] == "X") or (
+            numt[3] == "X" and numt[4] == "X" and numt[5] == "X") or (
+            numt[6] == "X" and numt[7] == "X" and numt[8] == "X"):
+            print("X won this game")
+            quit()
+
+        elif (numt[0] == "O" and numt[3] == "O" and numt[6] == "O") or (
+                numt[1] == "O" and numt[4] == "O" and numt[7] == "O") or (
+                numt[2] == "O" and numt[5] == "O" and numt[8] == "O") or (
+                numt[0] == "O" and numt[4] == "O" and numt[8] == "O") or (
+                numt[2] == "O" and numt[4] == "O" and numt[6] == "O") or (
+                numt[0] == "O" and numt[1] == "O" and numt[2] == "O") or (
+                numt[3] == "O" and numt[4] == "O" and numt[5] == "O") or (
+                numt[6] == "O" and numt[7] == "O" and numt[8] == "O"):
+            print("O won this game")
+            quit()
+        else:
+            return True
+def input_check(aq):            #it checks the input values which users enter
+    while aq < 1 or aq > 9:
+        aq = int(input("Please insert a number between 1-9\n"))
+
+def location_full(u):          #check the location is full or not
+    input_check(u)
+    while (numt[u - 1] == "X" or numt[u - 1] == "O"):
+        u = int(input("The position is already filled. Please change your number: "))
+        input_check(u)
+    return u
+
+def end_of_game(u):  #check if it is last tour of the game or not
+    if i == 9:
+        location_full()
+        if Player1 == "X":
+            numt[u - 1] = "X"
+            for asd in range(1, 10, 3):
+                print(f"|  {numt[asd - 1]}  " + f"|  {numt[asd]}  " + f"|  {numt[asd + 1]}  " + "|")
+        elif Player1 == "O":
+            numt[u - 1] = "O"
+            for asd in range(1, 10, 3):
+                print(f"|  {numt[asd - 1]}  " + f"|  {numt[asd]}  " + f"|  {numt[asd + 1]}  " + "|")
+        else:
+            print("Draw!")
+
+    else:
+        return True
+
+def checking_position(u):         #locate it to the positon which the users inserted
+    winner_check()
+    end_of_game(u)
+    if i%2==1:
+        u=location_full(u)
+        numt[u-1] = "X"
+        print(numt[u-1])
+        for asdfgh in range(1, 10, 3):
+            print(f"|  {numt[asdfgh - 1]}  " + f"|  {numt[asdfgh]}  " + f"|  {numt[asdfgh + 1]}  " + "|")
+        winner_check()
+
+    else:
+        u=location_full(u)
+        numt[u-1] = "O"
+        print(numt[u-1])
+        for asdfgh in range(1, 10, 3):
+            print(f"|  {numt[asdfgh - 1]}  " + f"|  {numt[asdfgh]}  " + f"|  {numt[asdfgh + 1]}  " + "|")
+        winner_check()
+
+
+Player1 = input("Please choose 'X' or 'O'").upper()
+if Player1 == "X":
+    numt = list(range(1,10))
+    a = list(range(1,6))
+    print(f"Player1 will start first as '{Player1}' and Player2 will play as 'O' after it ")
+    i=1
+    for asdf in a:
+        m = int(input(f"Player1 ({Player1}) please insert a number between 1-9\n"))                # m equals to "X"
+        checking_position(m)
+        i+=1
+        winner_check()
+        n = int(input("Player2 ('O') please insert a number between 1-9\n"))                # n equals to "O"
+        checking_position(n)
+        i+=1
+elif Player1 == "O":
+    print("Player1 will start first as 'O' and Player2 will play as 'X' after it ")
+
+
+else:
+    print("Please insert 'X' or 'O'")
+
+
