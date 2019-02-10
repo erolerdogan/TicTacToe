@@ -49,46 +49,77 @@ def end_of_game(u):  #check if it is last tour of the game or not
 
     else:
         return True
+def for_x(u):                       #put the 'X' to location where the users enter
+    u = location_full(u)
+    numt[u - 1] = "X"
+    for asdfgh in range(1, 10, 3):
+        print(f"|  {numt[asdfgh - 1]}  " + f"|  {numt[asdfgh]}  " + f"|  {numt[asdfgh + 1]}  " + "|")
+    winner_check()
+
+def for_o(u):                       #put the 'O' to location where the users enter
+    u = location_full(u)
+    numt[u - 1] = "O"
+    for asdfgh in range(1, 10, 3):
+        print(f"|  {numt[asdfgh - 1]}  " + f"|  {numt[asdfgh]}  " + f"|  {numt[asdfgh + 1]}  " + "|")
+    winner_check()
 
 def checking_position(u):         #locate it to the positon which the users inserted
     winner_check()
     end_of_game(u)
-    if i%2==1:
-        u=location_full(u)
-        numt[u-1] = "X"
-        print(numt[u-1])
-        for asdfgh in range(1, 10, 3):
-            print(f"|  {numt[asdfgh - 1]}  " + f"|  {numt[asdfgh]}  " + f"|  {numt[asdfgh + 1]}  " + "|")
-        winner_check()
-
+    if Player1 == "X":
+        if i%2==1:
+            for_x(u)
+        else:
+            for_o(u)
     else:
-        u=location_full(u)
-        numt[u-1] = "O"
-        print(numt[u-1])
-        for asdfgh in range(1, 10, 3):
-            print(f"|  {numt[asdfgh - 1]}  " + f"|  {numt[asdfgh]}  " + f"|  {numt[asdfgh + 1]}  " + "|")
-        winner_check()
+        if i % 2 == 1:
+            for_o(u)
+        else:
+            for_x(u)
 
-
-Player1 = input("Please choose 'X' or 'O'").upper()
-if Player1 == "X":
-    numt = list(range(1,10))
-    a = list(range(1,6))
-    print(f"Player1 will start first as '{Player1}' and Player2 will play as 'O' after it ")
-    i=1
-    for asdf in a:
-        m = int(input(f"Player1 ({Player1}) please insert a number between 1-9\n"))                # m equals to "X"
-        checking_position(m)
-        i+=1
-        winner_check()
-        n = int(input("Player2 ('O') please insert a number between 1-9\n"))                # n equals to "O"
-        checking_position(n)
-        i+=1
-elif Player1 == "O":
-    print("Player1 will start first as 'O' and Player2 will play as 'X' after it ")
-
-
-else:
-    print("Please insert 'X' or 'O'")
-
+for chance in list(range(1,6)):
+    print("If you want to play this game please say 'Y', if you don't, please say 'N'. What is your answer? ")
+    Answer = input().upper()
+    if Answer == "N":
+        print("The game is finished by user. Goodbye..")
+        quit()
+    elif Answer== "Y":
+        Player1= input("Please choose 'X' or 'O'").upper()
+        k=5
+        for asdadsdfdg in list(range(1,6)):
+            if Player1 == "X":
+                numt = list(range(1,10))
+                a = list(range(1,6))
+                print(f"Player1 will start first as '{Player1}' and Player2 will play as 'O' after it ")
+                i=1
+                for asdf in a:
+                    m = int(input(f"Player1 ({Player1}) please insert a number between 1-9\n"))                # m equals to "X"
+                    input_check(m)
+                    checking_position(m)
+                    i+=1
+                    winner_check()
+                    n = int(input("Player2 ('O') please insert a number between 1-9\n"))                # n equals to "O"
+                    checking_position(n)
+                    i+=1
+            elif Player1 == "O":
+                numt = list(range(1,10))
+                a = list(range(1,6))
+                print(f"Player1 will start first as '{Player1}' and Player2 will play as 'X' after it ")
+                i=1
+                for asdf in a:
+                    m = int(input(f"Player1 ({Player1}) please insert a number between 1-9\n"))                # m equals to "O"
+                    input_check(m)
+                    checking_position(m)
+                    i+=1
+                    winner_check()
+                    n = int(input("Player2 ('X') please insert a number between 1-9\n"))                # n equals to "X"
+                    checking_position(n)
+                    i+=1
+                print("Player1 will start first as 'O' and Player2 will play as 'X' after it ")
+            else:
+                Player1 = input(f"Remain Trying:{k}, Please choose only 'X' or 'O'=").upper()
+                k -= 1
+    else:
+        print("Please run the game and insert only 'Y' or 'N'. Otherwise, the program will not work")
+print("You used your chances. See ya on the other life")
 
