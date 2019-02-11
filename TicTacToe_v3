@@ -107,7 +107,7 @@ for chance in list(range(1,6)):
                 print(f"Player1 will start first as '{Player1}' and Player2 will play as 'X' after it ")
                 i=1
                 for asdf in a:
-                    m = int(input(f"Player1 ({Player1}) please insert a number between 1-9\n"))                # m equals to "O"
+                    m = int(input(f"Player1 ({Player1}) please insert a number between 1-9\n"))        #Bug is here        # m equals to "O"
                     input_check(m)
                     checking_position(m)
                     i+=1
