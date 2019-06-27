@@ -1,4 +1,4 @@
-#nothing to check
+#nothing to checkkk
 
 def winner_check():        # check the winner looking at the columns and the rows, if all columns / rows /crosses are same, it will decide who wins
         if (numt[0] == "X" and numt[3] == "X" and numt[6] == "X") or (
